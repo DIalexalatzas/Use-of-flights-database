@@ -1,5 +1,4 @@
-#1 /*Βρείτε τους αριθμούς των αεροσκαφών της κατασκευάστριας εταιρείας Airbus που 
-πετούν για την αεροπορική εταιρεία Lufthansa*/
+#1 /*Βρείτε τους αριθμούς των αεροσκαφών της κατασκευάστριας εταιρείας Airbus που πετούν για την αεροπορική εταιρεία Lufthansa*/
 
 SELECT DISTINCT airplanes.number
 FROM airlines, airplanes, airlines_has_airplanes AS aha
@@ -45,8 +44,7 @@ FROM flights, passengers, flights_has_passengers AS fhp, routes, airports
 WHERE fhp.flights_id = flights.id AND fhp.passengers_id = passengers.id AND flights.routes_id = routes.id
 	AND routes.destination_id = airports.id AND airports.city = "Berlin";
 
-#6 /*Βρείτε τα ονόματα και τα επίθετα των επιβατών που έχουν κάνει όλα τα ταξίδια τους 
-με το ίδιο αεροπλάνο.*/
+#6 /*Βρείτε τα ονόματα και τα επίθετα των επιβατών που έχουν κάνει όλα τα ταξίδια τους με το ίδιο αεροπλάνο.*/
 
 SELECT passengers.name, passengers.surname
 FROM flights, passengers, flights_has_passengers AS fhp
@@ -54,8 +52,7 @@ WHERE fhp.flights_id = flights.id AND fhp.passengers_id = passengers.id
 GROUP BY passengers.id
 HAVING COUNT(DISTINCT flights.airplanes_id) = 1;
 
-#7 /*Βρείτε την πόλη άφιξης και προορισμού σε πτήσεις που έχουν πραγματοποιηθεί 
-ανάμεσα στις ημερομηνίες 2010-03-01 και 2014-07-17 εφόσον οι πτήσεις αυτές 
+#7 /*Βρείτε την πόλη άφιξης και προορισμού σε πτήσεις που έχουν πραγματοποιηθεί ανάμεσα στις ημερομηνίες 2010-03-01 και 2014-07-17 εφόσον οι πτήσεις αυτές 
 είχαν πάνω από 5 επιβάτες.*/
 
 SELECT a1.city AS "#from" , a2.city AS "to"
@@ -66,8 +63,7 @@ WHERE fhp.flights_id = flights.id AND flights.routes_id = routes.id AND
 GROUP BY fhp.flights_id
 HAVING COUNT(fhp.passengers_id) > 5;
 
-#8 /*Για κάθε αεροπορική εταιρεία που έχει ακριβώς 4 αεροσκάφη, βρείτε το όνομα και 
-τον κωδικό της καθώς και τον αριθμό των δρομολογίων που διαθέτει.*/
+#8 /*Για κάθε αεροπορική εταιρεία που έχει ακριβώς 4 αεροσκάφη, βρείτε το όνομα και τον κωδικό της καθώς και τον αριθμό των δρομολογίων που διαθέτει.*/
 
 SELECT airlines.name, airlines.code, COUNT(DISTINCT routes.id)
 FROM airlines, airplanes, airlines_has_airplanes AS aha, routes
@@ -75,8 +71,7 @@ WHERE aha.airlines_id = airlines.id AND aha.airplanes_id = airplanes.id AND rout
 GROUP BY aha.airlines_id
 HAVING COUNT(DISTINCT aha.airplanes_id) = 4;
 
-#9 /*Βρείτε τα ονοματεπώνυμα των επιβατών που έχουν πετάξει με όλες τις αεροπορικές 
-εταιρείες που είναι ενεργές*/
+#9 /*Βρείτε τα ονοματεπώνυμα των επιβατών που έχουν πετάξει με όλες τις αεροπορικές εταιρείες που είναι ενεργές*/
 
 SELECT passengers.name, passengers.surname
 FROM passengers
