@@ -76,9 +76,9 @@ HAVING COUNT(DISTINCT aha.airplanes_id) = 4;
 SELECT passengers.name, passengers.surname
 FROM passengers
 WHERE NOT EXISTS(SELECT airlines.id FROM airlines
-					WHERE airlines.active = "Y" AND NOT EXISTS(SELECT passengers.id FROM flights, flights_has_passengers AS fhp, routes
-																	WHERE fhp.flights_id = flights.id AND fhp.passengers_id = passengers.id
-                                                                    AND flights.routes_id = routes.id AND routes.airlines_id = airlines.id));
+			WHERE airlines.active = "Y" AND NOT EXISTS(SELECT passengers.id FROM flights, flights_has_passengers AS fhp, routes
+									WHERE fhp.flights_id = flights.id AND fhp.passengers_id = passengers.id
+                                                                  		AND flights.routes_id = routes.id AND routes.airlines_id = airlines.id));
 
 #10 /*Βρείτε τα ονόματα και τα επίθετα των επιβατών που έχουν πετάξει μόνο με την 
 εταιρεία “Aegean Airlines” και αυτά που έχουν κάνει πάνω από ένα ταξίδι στο 
